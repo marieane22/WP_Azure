@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "wordpress" {
-  name     = "wordpressResourceGroup"
+  name     = "wordpressRG"
   location = "West Europe"
 }
