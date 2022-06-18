@@ -16,5 +16,6 @@ output "database_admin_login"{
 
 # Gives the password for DB access
 output "database_admin_password"{
-  value = azurerm_mysql_server.wordpress.administrator_login_password
+  value     = azurerm_mysql_server.wordpress.administrator_login_password
+  sensitive = true
 }
