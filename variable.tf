@@ -24,7 +24,7 @@ variable "admin_username" {
 
 variable "admin_password" {
   description = "Default password for admin account"
-  default     = "W0rdpr3ss@p4ss"
+  default     = "Ana123!@w0rd"
 }
 
 variable "database_admin_login" {
@@ -32,5 +32,5 @@ variable "database_admin_login" {
 }
 
 variable "database_admin_password" {
-  default = "w0rdpr3ss@p4ss"
+  default = "Ana123!@w0rd"
 }

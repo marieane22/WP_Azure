@@ -73,22 +73,3 @@ resource "azurerm_linux_virtual_machine_scale_set" "wordpress" {
 
   tags = var.tags
 }
-
-# data "template_file" "script" {
-#   # template = filebase64("/home/ec2-user/wordpress-azure-terraform-T3/wordpress.sh")
-#   template = file("wordpress.conf")
-# }
-
-# data "template_cloudinit_config" "config" {
-#   gzip          = true
-#   base64_encode = true
-
-#   part {
-#     # filename     = "wordpress.sh"
-#     filename     = "wordpress.conf"
-#     content_type = "text/cloud-config"
-#     content      = data.template_file.script.rendered
-#   }
-
-#   depends_on = [azurerm_mysql_server.wordpress]
-# }
