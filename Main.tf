@@ -24,19 +24,18 @@ resource "azurerm_lb_probe" "wordpress" {
 }
 
 resource "azurerm_lb_rule" "lbnatrule" {
-  resource_group_name            = azurerm_resource_group.wordpress.name
-  loadbalancer_id                = azurerm_lb.wordpress.id
-  name                           = "http"
-  protocol                       = "Tcp"
-  http = {
-      name                       = "http"
-      priority                   = 201
-      direction                  = "Inbound"
-      access                     = "Allow"
-      protocol                   = "Tcp"
-      source_port_range          = "*"
-      destination_port_range     = "80"
-      source_address_prefix      = "*"
+  resource_group_name = azurerm_resource_group.wordpress.name
+  loadbalancer_id     = azurerm_lb.wordpress.id
+  name                = "http"
+  protocol            = "Tcp"
+  name                   = "http"
+  priority               = 201
+  direction              = "Inbound"
+  access                 = "Allow"
+  protocol               = "Tcp"
+  source_port_range      = "*"
+  destination_port_range = "80"
+  source_address_prefix  = "*"
   }
   frontend_port                  = var.application_port
   backend_port                   = var.application_port
@@ -57,7 +56,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "wordpress" {
   # custom_data                     = filebase64("/home/ec2-user/wordpress-terraform-azure/wordpress.sh")
   custom_data = "CiMhL2Jpbi9iYXNoCnN1ZG8geXVtIGluc3RhbGwgaHR0cGQgd2dldCB1bnppcCBlcGVsLXJlbGVhc2UgbXlzcWwgLXkKc3VkbyB5dW0gLXkgaW5zdGFsbCBodHRwOi8vcnBtcy5yZW1pcmVwby5uZXQvZW50ZXJwcmlzZS9yZW1pLXJlbGVhc2UtNy5ycG0Kc3VkbyB5dW0gLXkgaW5zdGFsbCB5dW0tdXRpbHMKc3VkbyB5dW0tY29uZmlnLW1hbmFnZXIgLS1lbmFibGUgcmVtaS1waHA1NiAgIFtJbnN0YWxsIFBIUCA1LjZdCnN1ZG8geXVtIC15IGluc3RhbGwgcGhwIHBocC1tY3J5cHQgcGhwLWNsaSBwaHAtZ2QgcGhwLWN1cmwgcGhwLW15c3FsIHBocC1sZGFwIHBocC16aXAgcGhwLWZpbGVpbmZvCnN1ZG8gd2dldCBodHRwczovL3dvcmRwcmVzcy5vcmcvbGF0ZXN0LnRhci5negpzdWRvIHRhciAteGYgbGF0ZXN0LnRhci5neiAtQyAvdmFyL3d3dy9odG1sLwpzdWRvIG12IC92YXIvd3d3L2h0bWwvd29yZHByZXNzLyogL3Zhci93d3cvaHRtbC8Kc3VkbyBnZXRlbmZvcmNlCnN1ZG8gc2VkICdzL1NFTElOVVg9cGVybWlzc2l2ZS9TRUxJTlVYPWVuZm9yY2luZy9nJyAvZXRjL3N5c2NvbmZpZy9zZWxpbnV4IC1pCnN1ZG8gc2V0ZW5mb3JjZSAwCnN1ZG8gY2hvd24gLVIgYXBhY2hlOmFwYWNoZSAvdmFyL3d3dy9odG1sLwpzdWRvIHN5c3RlbWN0bCBzdGFydCBodHRwZApzdWRvIHN5c3RlbWN0bCBlbmFibGUgaHR0cGQ="
 
- source_image_reference {
+  source_image_reference {
     publisher = "OpenLogic"
     offer     = "CentOS"
     sku       = "7_9-gen2"
