@@ -24,18 +24,21 @@ resource "azurerm_lb_probe" "wordpress" {
 }
 
 resource "azurerm_lb_rule" "lbnatrule" {
-  resource_group_name = azurerm_resource_group.wordpress.name
-  loadbalancer_id     = azurerm_lb.wordpress.id
-  name                   = "http"
-  protocol               = "Tcp"
-  destination_port_range = "80"
+  resource_group_name            = azurerm_resource_group.wordpress.name
+  loadbalancer_id                = azurerm_lb.wordpress.id
+  name                           = "http"
+  destination_port_range         = "80"
+  direction                      = "Inbound"
+  access                         = "Allow"
+  protocol                       = "Tcp"
+  source_port_range              = "*"
+  source_address_prefix          = "*"
   frontend_port                  = var.application_port
   backend_port                   = var.application_port
   backend_address_pool_id        = azurerm_lb_backend_address_pool.bpepool.id
   frontend_ip_configuration_name = "PublicIPAddress"
   probe_id                       = azurerm_lb_probe.wordpress.id
 }
-
 resource "azurerm_linux_virtual_machine_scale_set" "wordpress" {
   name                            = "vmscaleset"
   location                        = var.location
