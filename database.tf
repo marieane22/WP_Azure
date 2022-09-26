@@ -34,8 +34,8 @@ resource "azurerm_mysql_firewall_rule" "wordpress" {
   name                = "wordpress-mysql-firewall-rule-${(random_string.fqdn.result)}"
   resource_group_name = azurerm_resource_group.wordpress.name
   server_name         = azurerm_mysql_server.wordpress.name
-  start_ip_address    = azurerm_public_ip.wordpress.ip_address
-  end_ip_address      = azurerm_public_ip.wordpress.ip_address
+  start_ip_address = "10.0.17.62"
+  end_ip_address   = "10.0.17.62"
 }
 
 data "azurerm_mysql_server" "wordpress" {
